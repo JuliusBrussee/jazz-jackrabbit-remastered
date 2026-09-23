@@ -64,4 +64,4 @@ If you want to skip ahead, `index.html?level=3&x=120` starts you in level 3 at c
 
 ## Credits
 
-The original Jazz Jackrabbit (1994) was made by Arjan Brussee and Cliff Bleszinski and published by Epic MegaGames. This remake is an unofficial fan project that isn't affiliated with or endorsed by Epic Games, and Jazz Jackrabbit is a trademark of its owner.
+The original Jazz Jackrabbit (1994) was made by Arjan Brussee and Cliff Bleszinski and published by Epic MegaGames. This remake is a completely unpaid tech demo and fan project. It isn't affiliated with or endorsed by Epic Games or anyone else, it doesn't make any money, and I won't be taking sponsors for it. Jazz Jackrabbit is a trademark of its owner.
