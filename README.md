@@ -4,6 +4,29 @@ A one-file HTML/JS fan remake of Epic MegaGames' 1994 platformer. All sprites, t
 
 **Play:** open `index.html` in a browser.
 
+![Title screen](screenshots/title.png)
+
+## Screenshots
+
+| | |
+|---|---|
+| ![Level intro card](screenshots/intro.png) | ![Diamondus: blasting turtle goons over a spike pit](screenshots/diamondus.png) |
+| **Diamondus.** Every world opens with its own title card. | Blasting turtle goons past a spike pit. Gems are set right into the rock. |
+| ![Helicopter ears over a pit](screenshots/copter.png) | ![Secret area revealed](screenshots/secret.png) |
+| Helicopter ears: press jump again in mid-air to hover. | Shoot the cracked blocks to open a hidden room with gems and a 1-UP. |
+| ![Sugar rush](screenshots/sugar-rush.png) | ![Tubelectric boost pad](screenshots/boost.png) |
+| Eat 60 snacks for a sugar rush: invincible, faster, and items fly to you. | **Tubelectric.** Boost pads fling Jazz across bottomless gaps. |
+| ![RF missiles](screenshots/rf-missiles.png) | ![Medivo swinging platform](screenshots/medivo-swing.png) |
+| RF missiles blow a robo-turtle apart. The dark worlds use dynamic lighting. | **Medivo.** Swinging platforms, torch-lit keeps, bats and firefly glow. |
+| ![Toaster flamethrower](screenshots/toaster.png) | ![Boss: Sir Shellington](screenshots/boss-knight.png) |
+| The Toaster flamethrower against an armoured knight turtle. | **Boss:** Sir Shellington leaps, sends out shockwaves and throws axes. |
+| ![Letni sunset dunes](screenshots/letni.png) | ![Technoir rooftops](screenshots/technoir.png) |
+| **Letni.** Sprinting over sunset dunes, with afterimages at top speed. | **Technoir.** Rainy neon rooftops above a synthwave grid. |
+| ![Boss: Devan Shell](screenshots/boss-devan.png) | ![Level results](screenshots/results.png) |
+| **Final boss:** Devan Shell in his hover pod. Aim up and dodge the bombs. | Level tally: gems, enemies, secrets, time and a perfect bonus. |
+
+![Ending](screenshots/ending.png)
+
 ## What's in it
 
 - 5 worlds: Diamondus, Tubelectric, Medivo, Letni, Technoir
