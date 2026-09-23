@@ -2,7 +2,11 @@
 
 A one-file HTML/JS fan remake of Epic MegaGames' 1994 platformer. All sprites, tiles, backdrops, music and levels are generated in code at load time, with no asset files.
 
-**Play:** open `index.html` in a browser.
+**▶ Play it in your browser: https://juliusbrussee.github.io/jazz-jackrabbit-remastered/**, or open `index.html` locally.
+
+![Gameplay preview](media/gameplay-preview.gif)
+
+🎬 **[Watch 77 seconds of gameplay with sound (1080p60)](https://juliusbrussee.github.io/jazz-jackrabbit-remastered/media/jazz-gameplay.mp4)**
 
 ![Title screen](screenshots/title.png)
 
