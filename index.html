@@ -2010,6 +2010,7 @@ function drawAdditive() {
   for (const it of L.items) if (!it.dead && (it.type === 'gem' || it.type === 'gcarrot' || it.type === 'oneup') && it.t % 90 < 30) { const k = it.t % 90 / 30; G_(it.x + 3, it.y - 3, 6 * Math.sin(k * Math.PI), '255,255,255', .8); }
   for (const f of L.flashes) G_(f.x, f.y, f.r * .35, f.col, f.life / f.max * .6);
   if (L.theme.dark) for (const l of L.lights) if (Math.abs(l.x - cam.x - VW / 2) < VW) G_(l.x, l.y, l.r * .22, l.col, .35);
+  for (let i = 0; i < P.trail.length; i++) { const tr = P.trail[i], im = tr.face < 0 ? flipOf(tr.fr) : tr.fr; ctx.globalAlpha = (i + 1) / P.trail.length * .3; ctx.drawImage(whiteOf(im), px1(tr.x - im.ax), px1(tr.y - im.ay)); }
   drawParts(true);
   if (G.sugar > 0) G_(P.x + P.w / 2, P.y + P.h / 2, 30, `${128 + 127 * Math.sin(G.t * .2) | 0},${128 + 127 * Math.sin(G.t * .2 + 2) | 0},${128 + 127 * Math.sin(G.t * .2 + 4) | 0}`, .5);
   ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
@@ -2073,12 +2074,6 @@ function drawBoss(b) {
 }
 function drawPlayer() {
   const p = P, fr = p.fr; if (!fr) return;
-  for (let i = 0; i < p.trail.length; i++) {
-    const tr = p.trail[i], im = tr.face < 0 ? flipOf(tr.fr) : tr.fr;
-    ctx.globalAlpha = (i + 1) / p.trail.length * .3; ctx.globalCompositeOperation = 'lighter';
-    ctx.drawImage(whiteOf(im), px1(tr.x - im.ax), px1(tr.y - im.ay));
-  }
-  ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
   if (p.inv > 0 && !p.dead && !p.win && (p.inv >> 2) % 2 && G.sugar <= 0) return;
   const im = p.face < 0 ? flipOf(fr) : fr, x = px1(p.x + p.w / 2), y = px1(p.y + p.h + 1);
   ctx.save(); ctx.translate(x, y);
@@ -2086,7 +2081,7 @@ function drawPlayer() {
   else if (p.stomp && p.stompT < 10) { ctx.translate(0, -12); ctx.rotate(p.stompT * .7 * p.face); ctx.translate(0, 12); }
   if (p.sq !== 1) ctx.scale(2 - p.sq, p.sq);
   ctx.drawImage(im, -im.ax, -im.ay);
-  if (G.sugar > 0 && G.t % 4 < 2) { ctx.globalAlpha = .45; ctx.globalCompositeOperation = 'lighter'; ctx.drawImage(whiteOf(im), -im.ax, -im.ay); }
+  if (G.sugar > 0 && G.t % 8 < 3) { ctx.globalAlpha = .28; ctx.globalCompositeOperation = 'lighter'; ctx.drawImage(whiteOf(im), -im.ax, -im.ay); }
   ctx.restore(); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
 }
 function drawProps() {
@@ -2170,11 +2165,11 @@ function renderGame() {
     else if (b.k === 'orb') { pdisc(ctx, b.x, b.y, 2, '#ff7a7a'); prect(ctx, b.x - 1, b.y - 1, 1, 1, '#fff'); }
     else if (b.k === 'bolt') { prect(ctx, b.x - 2, b.y - 1, 4, 2, '#ffe14a'); }
   }
-  drawPlayer();
   drawParts(false);
   drawLighting(cx, cy);
   ctx.setTransform(SC, 0, 0, SC, -Math.round(cx * SC), -Math.round(cy * SC));
   drawAdditive();
+  drawPlayer();
   ctx.setTransform(SC, 0, 0, SC, 0, 0);
   drawWeather(th, cx, cy);
   if (th.weather === 'rain' || th.key === 'tubelectric') { if (Math.random() < .004) L.flash = 10; if (L.flash > 0) { ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = `rgba(160,170,255,${L.flash * .018})`; ctx.fillRect(0, 0, VW, VH); ctx.globalCompositeOperation = 'source-over'; L.flash--; } }
@@ -2373,17 +2368,17 @@ function renderEnding() {
   drawBackdrop(th, t * .5, 0, t);
   ctx.setTransform(SC, 0, 0, SC, 0, 0);
   ctx.globalCompositeOperation = 'lighter';
-  for (const f of G.fw || []) { ctx.globalAlpha = f.life / f.max; ctx.drawImage(glow(f.col), f.x - 5, f.y - 5, 10, 10); }
+  for (const f of G.fw || []) { const a = f.life / f.max; ctx.globalAlpha = a; ctx.drawImage(glow(f.col), f.x - 9, f.y - 9, 18, 18); ctx.fillStyle = '#fff'; ctx.fillRect(f.x - .5, f.y - .5, 1, 1); }
   ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
   const fr = SPR.jazz.win[(t >> 3) % 8];
-  ctx.save(); ctx.translate(Math.round(VW / 2), Math.round(VH * .62)); ctx.scale(3, 3); ctx.drawImage(fr, -fr.ax, -fr.ay); ctx.restore();
+  ctx.save(); ctx.translate(Math.round(VW / 2), Math.round(VH * .66)); ctx.scale(2, 2); ctx.drawImage(fr, -fr.ax, -fr.ay); ctx.restore();
   drawVignette(.45);
   ctx.setTransform(SC, 0, 0, SC, 0, 0);
   const lines = [['CONGRATULATIONS!', GOLD, 3], ['DEVAN SHELL HAS BEEN DEFEATED', '#fff', 1], ['AND EVA EARLONG IS SAFE ONCE MORE.', '#fff', 1]];
   let y = Math.round(VH * .07);
   for (const [s, c, sc] of lines) { text(ctx, s, VW / 2, y, { col: c, align: 'center', scale: sc, ol: '#000' }); y += sc * 7 + 8; }
-  text(ctx, 'FINAL SCORE ' + String(G.score).padStart(7, '0'), VW / 2, VH * .7, { col: GOLD, align: 'center', scale: 2 });
-  text(ctx, 'THANKS FOR PLAYING!', VW / 2, VH * .7 + 22, { col: JADE, align: 'center' });
+  text(ctx, 'FINAL SCORE ' + String(G.score).padStart(7, '0'), VW / 2, VH * .72, { col: GOLD, align: 'center', scale: 2 });
+  text(ctx, 'THANKS FOR PLAYING!', VW / 2, VH * .72 + 22, { col: JADE, align: 'center' });
   text(ctx, 'A TRIBUTE TO JAZZ JACKRABBIT · EPIC MEGAGAMES 1994', VW / 2, VH - 14, { col: 'rgba(255,255,255,.65)', align: 'center' });
 }
 function drawIris() {
