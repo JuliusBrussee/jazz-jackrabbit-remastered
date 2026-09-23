@@ -1,4 +1,4 @@
-# Jazz Jackrabbit · Remastered
+# Jazz Jackrabbit · Opus Edition (unofficial)
 
 My dad, Arjan Brussee, co-created Jazz Jackrabbit with Cliff Bleszinski back in 1994. Arjan wrote the code in the Netherlands, Cliff designed it, and Epic MegaGames put it out on MS-DOS: a green rabbit in a red bandana, carrying a gun roughly his own size, fighting a turtle named Devan Shell.
 
